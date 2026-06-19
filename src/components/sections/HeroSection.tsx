@@ -34,15 +34,10 @@ export function HeroSection() {
     <section ref={ref} className="relative min-h-screen flex items-center overflow-hidden" style={{ background: "var(--bg)" }}>
       {/* Video Background */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* CSS animated fallback (always visible, video layers on top) */}
         <div
-          className="absolute inset-0 z-0"
+          className="absolute inset-0 z-10"
           style={{
-            background: `
-              radial-gradient(ellipse 80% 60% at 50% -20%, rgba(74,158,107,0.06) 0%, transparent 70%),
-              radial-gradient(ellipse 60% 50% at 30% 60%, rgba(74,158,107,0.04) 0%, transparent 60%),
-              radial-gradient(ellipse 50% 40% at 70% 80%, rgba(74,158,107,0.03) 0%, transparent 50%)
-            `,
+            background: "linear-gradient(180deg, var(--hero-overlay) 0%, var(--bg) 100%)",
           }}
         />
         <video
@@ -50,19 +45,11 @@ export function HeroSection() {
           muted
           loop
           playsInline
-          preload="auto"
           onCanPlay={() => setVideoLoaded(true)}
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 z-[1] ${videoLoaded ? "opacity-40" : "opacity-0"}`}
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${videoLoaded ? "opacity-35" : "opacity-0"}`}
         >
-          <source src="https://videos.pexels.com/video-files/3195392/3195392-uhd_2560_1440_30fps.mp4" type="video/mp4" />
+          <source src="/home/prinshu/q9-labs/src/components/sections/120585-724673049_medium.mp4" type="video/mp4" />
         </video>
-        {/* Gradient overlay over everything */}
-        <div
-          className="absolute inset-0 z-[2]"
-          style={{
-            background: "linear-gradient(180deg, var(--hero-overlay) 0%, var(--hero-overlay) 40%, var(--bg) 100%)",
-          }}
-        />
       </div>
 
       {/* Dot pattern overlay */}
@@ -86,9 +73,9 @@ export function HeroSection() {
             <span
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium"
               style={{
-                background: "rgba(74,158,107,0.12)",
+                background: "rgba(196,138,91,0.12)",
                 color: "var(--accent)",
-                border: "1px solid rgba(74,158,107,0.25)",
+                border: "1px solid rgba(196,138,91,0.25)",
                 backdropFilter: "blur(12px)",
               }}
             >
@@ -174,8 +161,8 @@ export function HeroSection() {
                 backdropFilter: "blur(8px)",
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.background = "rgba(74,158,107,0.1)";
-                e.currentTarget.style.borderColor = "rgba(74,158,107,0.3)";
+                e.currentTarget.style.background = "rgba(196,138,91,0.1)";
+                e.currentTarget.style.borderColor = "rgba(196,138,91,0.3)";
                 e.currentTarget.style.color = "var(--accent)";
               }}
               onMouseLeave={(e) => {
