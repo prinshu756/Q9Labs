@@ -32,31 +32,71 @@ export function HeroSection() {
 
   return (
     <section ref={ref} className="relative min-h-screen flex items-center overflow-hidden" style={{ background: "var(--bg)" }}>
-      {/* Video Background */}
+      {/* Animated background - always works, no external dependencies */}
       <div className="absolute inset-0 overflow-hidden">
+        {/* Pulsing glow orbs */}
+        <div className="absolute inset-0">
+          <div
+            className="absolute top-1/4 -left-1/4 w-1/2 h-1/2 rounded-full animate-pulse"
+            style={{
+              background: "radial-gradient(circle, rgba(74,158,107,0.08) 0%, transparent 70%)",
+              animationDuration: "4s",
+            }}
+          />
+          <div
+            className="absolute bottom-1/3 -right-1/4 w-1/2 h-1/2 rounded-full animate-pulse"
+            style={{
+              background: "radial-gradient(circle, rgba(74,158,107,0.06) 0%, transparent 70%)",
+              animationDuration: "6s",
+              animationDelay: "1s",
+            }}
+          />
+        </div>
+
+        {/* Circuit grid pattern */}
         <div
-          className="absolute inset-0 z-10"
+          className="absolute inset-0"
           style={{
-            background: "linear-gradient(180deg, var(--hero-overlay) 0%, var(--bg) 100%)",
+            backgroundImage: `
+              linear-gradient(rgba(74,158,107,0.04) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(74,158,107,0.04) 1px, transparent 1px)
+            `,
+            backgroundSize: "60px 60px",
           }}
         />
+
+        {/* Floating dots */}
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `radial-gradient(circle at 1px 1px, rgba(74,158,107,0.08) 1px, transparent 0)`,
+            backgroundSize: "40px 40px",
+          }}
+        />
+
+        {/* Video (enhancement, not required) */}
         <video
           autoPlay
           muted
           loop
           playsInline
           onCanPlay={() => setVideoLoaded(true)}
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${videoLoaded ? "opacity-35" : "opacity-0"}`}
+          className={`absolute inset-0 w-full h-full object-cover transition-all duration-1000 ${
+            videoLoaded ? "opacity-100" : "opacity-100"
+          }`}
+          style={{ filter: "saturate(0.8) contrast(1.1)" }}
         >
-          <source src="/home/prinshu/q9-labs/src/components/sections/120585-724673049_medium.mp4" type="video/mp4" />
+          <source src="/intro.mp4" type="video/mp4" />
         </video>
-      </div>
 
-      {/* Dot pattern overlay */}
-      <div className="absolute inset-0 opacity-[0.04] z-10" style={{
-        backgroundImage: `radial-gradient(circle at 1px 1px, var(--fg) 1px, transparent 0)`,
-        backgroundSize: "40px 40px",
-      }} />
+        {/* Soft gradient overlay */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: "linear-gradient(180deg, transparent 0%, transparent 50%, var(--bg) 100%)",
+          }}
+        />
+  </div>
 
       <motion.div
         style={{ y: contentY }}
@@ -71,11 +111,11 @@ export function HeroSection() {
             className="mb-8"
           >
             <span
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold"
               style={{
-                background: "rgba(196,138,91,0.12)",
+                background: "var(--accent-light)",
                 color: "var(--accent)",
-                border: "1px solid rgba(196,138,91,0.25)",
+                border: "1px solid var(--accent-glow)",
                 backdropFilter: "blur(12px)",
               }}
             >
@@ -89,12 +129,12 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.15 }}
-            className="text-5xl sm:text-6xl lg:text-8xl font-bold leading-[1.05] tracking-tight font-heading"
+            className="text-5xl sm:text-6xl lg:text-8xl font-bold leading-[1.05] tracking-tight font-heading text-white"
             style={{ color: "var(--fg)" }}
           >
             Premium Electronics
             <br />
-            <span style={{ color: "var(--accent)" }}>
+            <span style={{ color: "var(--accent)"  , font : "Cuprum" }}>
               Components & Parts
             </span>
           </motion.h1>
@@ -105,7 +145,7 @@ export function HeroSection() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
             className="mt-8 text-lg lg:text-xl max-w-2xl leading-relaxed"
-            style={{ color: "var(--fg-muted)" }}
+            style={{ color: "#fff" }}
           >
             From microcontrollers to sensors, displays to power management — source the highest quality components for your next breakthrough project.
           </motion.p>
@@ -131,7 +171,7 @@ export function HeroSection() {
               href="/deals"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl font-semibold transition-all duration-200 active:scale-[0.98]"
               style={{
-                background: "rgba(128,128,128,0.08)",
+                background: "var(--card)",
                 color: "var(--fg)",
                 border: "1px solid var(--border)",
                 backdropFilter: "blur(12px)",
@@ -155,20 +195,20 @@ export function HeroSection() {
               href={`/category/${cat.name.toLowerCase()}`}
               className="group inline-flex items-center gap-2.5 px-5 py-3 rounded-2xl transition-all duration-300"
               style={{
-                background: "rgba(128,128,128,0.06)",
+                background: "var(--card)",
                 border: "1px solid var(--border)",
-                color: "var(--fg-muted)",
+                color: "var(--fg)",
                 backdropFilter: "blur(8px)",
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.background = "rgba(196,138,91,0.1)";
-                e.currentTarget.style.borderColor = "rgba(196,138,91,0.3)";
+                e.currentTarget.style.background = "var(--card-hover)";
+                e.currentTarget.style.borderColor = "var(--accent-glow)";
                 e.currentTarget.style.color = "var(--accent)";
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.background = "rgba(128,128,128,0.06)";
+                e.currentTarget.style.background = "var(--card)";
                 e.currentTarget.style.borderColor = "var(--border)";
-                e.currentTarget.style.color = "var(--fg-muted)";
+                e.currentTarget.style.color = "var(--fg)";
               }}
             >
               <span className="text-lg">{cat.icon}</span>

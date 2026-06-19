@@ -47,15 +47,15 @@ export function CategoriesSection({ categories }: CategoriesSectionProps) {
                 href={`/category/${category.slug}`}
                 className="group block rounded-2xl p-6 text-center transition-all duration-300"
                 style={{
-                  background: "rgba(128,128,128,0.06)",
+                  background: "var(--card)",
                   border: "1px solid var(--border)",
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.background = "rgba(74, 158, 107, 0.06)";
-                  e.currentTarget.style.borderColor = "rgba(74,158,107,0.2)";
+                  e.currentTarget.style.background = "var(--card-hover)";
+                  e.currentTarget.style.borderColor = "var(--accent-glow)";
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.background = "rgba(128,128,128,0.06)";
+                  e.currentTarget.style.background = "var(--card)";
                   e.currentTarget.style.borderColor = "var(--border)";
                 }}
               >
@@ -71,7 +71,7 @@ export function CategoriesSection({ categories }: CategoriesSectionProps) {
                     loading="lazy"
                   />
                 </div>
-                <h3 className="font-semibold text-sm transition-colors group-hover:text-[var(--accent)]" style={{ color: "var(--fg)" }}>
+                <h3 className="font-semibold text-sm transition-colors group-hover:text-(--accent)" style={{ color: "var(--fg)" }}>
                   {category.name}
                 </h3>
                 <p className="text-xs mt-1" style={{ color: "var(--fg-muted)" }}>

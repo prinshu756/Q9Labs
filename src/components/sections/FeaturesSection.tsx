@@ -93,17 +93,17 @@ export function FeaturesSection() {
               transition={{ duration: 0.5, delay: i * 0.06 }}
               className="group rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1"
               style={{
-                background: "rgba(128,128,128,0.06)",
-                border: "1px solid rgba(128,128,128,0.06)",
+                background: "var(--card)",
+                border: "1px solid var(--border)",
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.background = "rgba(74, 158, 107, 0.04)";
+                e.currentTarget.style.background = "var(--card-hover)";
                 e.currentTarget.style.borderColor = "var(--accent-glow)";
-                e.currentTarget.style.boxShadow = "0 8px 32px rgba(74,158,107,0.08)";
+                e.currentTarget.style.boxShadow = "0 8px 32px rgba(90,184,122,0.08)";
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.background = "rgba(128,128,128,0.06)";
-                e.currentTarget.style.borderColor = "rgba(128,128,128,0.06)";
+                e.currentTarget.style.background = "var(--card)";
+                e.currentTarget.style.borderColor = "var(--border)";
                 e.currentTarget.style.boxShadow = "none";
               }}
             >
