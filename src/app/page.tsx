@@ -31,7 +31,7 @@ export default function Home() {
           <div className="mt-10 flex flex-wrap justify-center gap-4">
             <Link
               href="/products"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl bg-white text-[var(--fg)] font-semibold hover:bg-gray-100 transition-all duration-200 active:scale-[0.98] shadow-xl"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl bg-white text-(--fg) font-semibold hover:bg-gray-100 transition-all duration-200 active:scale-[0.98] shadow-xl"
             >
               Start Shopping
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
